@@ -29,7 +29,7 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback{
 		this.mActivity = activity;
 		this.getHolder().addCallback(this);
 		
-		bmBackground = BitmapFactory.decodeResource(this.getResources(), R.drawable.black_bg);
+		bmBackground = BitmapFactory.decodeResource(this.getResources(), R.drawable.welcome_bg);
 		bmClassicMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.classic);
 		bmLoopMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.loop);
 		bmTimedMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.timed);
@@ -65,16 +65,7 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback{
 					&& y < 350 + bmTimedMode.getHeight()) {
 				Constant.GAME_MODE = Constant.TIMED_MODE;
 			}
-			switch(Constant.GAME_MODE){
-			case Constant.CLASSIC_MODE:
-				this.mActivity.toAnotherView(Constant.CLASSIC_MODE);
-				break;
-			case Constant.LOOP_MODE:
-				this.mActivity.toAnotherView(Constant.LOOP_MODE);
-				break;
-			case Constant.TIMED_MODE:
-				break;
-			}
+			this.mActivity.toAnotherView(Constant.GAME_MODE);
 			// switch(status)
 			// {
 			// case
@@ -112,13 +103,13 @@ System.out.println(Constant.GAME_MODE);
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		Constant.threadFlag=true;
+		Constant.MENU_THREAD_FLAG=true;
 		mMenuThread.start();			
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		Constant.threadFlag=false;
+		Constant.MENU_THREAD_FLAG=false;
 	}
 
 }

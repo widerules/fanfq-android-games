@@ -1,18 +1,25 @@
 package com.fanfq.firstgame;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.SurfaceHolder;
 
-public class ClassicModeView extends GameView{
+public class TimedModeView extends GameView{
 
-	
 	private int clreanCount = 0;
+	Thread mTimedThread;
+	Paint mPaint;
 	
-	public ClassicModeView(MainActivity activity) {
+	public TimedModeView(MainActivity activity) {
 		super(activity);
+		mPaint = new Paint();
+		mPaint.setAntiAlias(true);
+		mTimedThread = new TimedThread(this);
+		
 	}
 	
-	public boolean classicMode(int rowClicked, int columnClicked){
+	public boolean timedMode(int rowClicked, int columnClicked){
 		boolean result = false;
 		
 		if(blocks[rowClicked][columnClicked].isFlag()){
@@ -60,31 +67,18 @@ public class ClassicModeView extends GameView{
 		
 		return result;
 	}
-	
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		System.out.println("sss");
-//		return super.onKeyDown(keyCode, event);
-//	}
-	
-	
 
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		
+		super.surfaceCreated(holder);
+		Constant.TIMED_THREAD_FLAG=true;
+//		mTimedThread.start();
+	}
 	
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_UP:
-			int x = (int) event.getX()/20;
-			int y = (int) event.getY()/20;
-			if (!classicMode(x,y)){
-				count =0;
-				filter(x, y);
-			}
-		}
-		
-		return true;
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		super.surfaceDestroyed(holder);
+		Constant.TIMED_THREAD_FLAG=false;
 	}
-
-	
 }

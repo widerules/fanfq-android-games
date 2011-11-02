@@ -24,8 +24,9 @@ public final class R {
         public static final int r22=0x7f02000a;
         public static final int timed=0x7f02000b;
         public static final int welcome_bg=0x7f02000c;
-        public static final int y11=0x7f02000d;
-        public static final int y22=0x7f02000e;
+        public static final int xiaoban_bg=0x7f02000d;
+        public static final int y11=0x7f02000e;
+        public static final int y22=0x7f02000f;
     }
     public static final class layout {
         public static final int main=0x7f030000;

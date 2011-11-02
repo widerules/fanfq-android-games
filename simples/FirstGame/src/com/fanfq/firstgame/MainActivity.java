@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 	private GameView mGameView;
 	private ClassicModeView mClassicModeView;
 	private LoopModeView mLoopModeView;
+	private TimedModeView mTimedModeView;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,12 @@ public class MainActivity extends Activity {
 					mLoopModeView.setFocusableInTouchMode(true);
 					setContentView(mLoopModeView);
 					break;
+				case Constant.TIMED_MODE:
+					mTimedModeView = new TimedModeView(MainActivity.this);
+					mTimedModeView.requestFocus();
+					mTimedModeView.setFocusableInTouchMode(true);
+					setContentView(mTimedModeView);
+					break;
 				}
 			}
 			
@@ -72,7 +79,7 @@ public class MainActivity extends Activity {
     public void waitTwoSeconds()
     {
 		try {
-				Thread.sleep(2000);
+				Thread.sleep(4000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}  
@@ -86,6 +93,7 @@ public class MainActivity extends Activity {
     	case Constant.ENTER_MENU:mHandler.sendEmptyMessage(Constant.ENTER_MENU);break;
     	case Constant.CLASSIC_MODE:mHandler.sendEmptyMessage(Constant.CLASSIC_MODE);break;
     	case Constant.LOOP_MODE:mHandler.sendEmptyMessage(Constant.LOOP_MODE);break;
+    	case Constant.TIMED_MODE:mHandler.sendEmptyMessage(Constant.TIMED_MODE);break;
     	}
     }
 }

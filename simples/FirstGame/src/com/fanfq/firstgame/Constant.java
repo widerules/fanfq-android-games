@@ -14,6 +14,7 @@ public class Constant {
 	public static final int LOOP_MODE = 11;
 	public static final int TIMED_MODE =12;
 	
-	public static boolean threadFlag=true;//控制ChoserThred线程
-
+	public static boolean MENU_THREAD_FLAG = true;
+	public static boolean GAME_THREAD_FLAG=true;//控制ChoserThred线程
+	public static boolean TIMED_THREAD_FLAG = true;
 }
