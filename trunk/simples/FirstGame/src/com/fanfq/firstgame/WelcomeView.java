@@ -25,7 +25,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback{
 		this.getHolder().addCallback(this);//设置生命周期回调接口的实现者
 		paint = new Paint();//创建画笔
 		paint.setAntiAlias(true);//打开抗锯齿
-		mBitmap = BitmapFactory.decodeResource(this.mActivity.getResources(), R.drawable.welcome_bg);
+		mBitmap = BitmapFactory.decodeResource(this.mActivity.getResources(), R.drawable.xiaoban_bg);
 	}
 	
 	public void onDraw(Canvas canvas){	
@@ -35,9 +35,9 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback{
 		canvas.drawRect(0, 0, Constant.SCREEN_WIDTH, Constant.SCREEN_WIDTH, paint);
 		
 		//进行平面贴图
-//		if(mBitmap==null)return;
-//		paint.setAlpha(currentAlpha);		
-//		canvas.drawBitmap(mBitmap, currentX, currentY, paint);	
+		if(mBitmap==null)return;
+		paint.setAlpha(currentAlpha);		
+		canvas.drawBitmap(mBitmap, currentX, currentY, paint);	
 	}
 
 	@Override

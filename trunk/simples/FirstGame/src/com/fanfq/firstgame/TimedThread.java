@@ -3,25 +3,26 @@ package com.fanfq.firstgame;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-public class MenuThread extends Thread{
-
-	MenuView mMenuView;
-	SurfaceHolder holder;
+public class TimedThread extends Thread{
 	
-	public MenuThread(MenuView menuView){
-		this.mMenuView = menuView;
-		this.holder = menuView.getHolder();
+	SurfaceHolder holder;
+	TimedModeView mTimedModeView;
+	
+	public TimedThread(TimedModeView timedModeView){
+		this.mTimedModeView =timedModeView;
+		this.holder = timedModeView.getHolder();
 	}
 	
 	public void run(){
 		Canvas canvas;
-		while (Constant.MENU_THREAD_FLAG) {
+		while (Constant.TIMED_THREAD_FLAG) {
 			canvas = null;
 			if(true){
 				try{
 					canvas = this.holder.lockCanvas();
 					synchronized (this.holder) {
-						mMenuView.onDraw(canvas);
+						mTimedModeView.time--;
+						mTimedModeView.onDraw(canvas);
 					}
 				}catch(Exception e){
 					e.printStackTrace();
@@ -32,10 +33,11 @@ public class MenuThread extends Thread{
 				}
 			}
 			try{
-				sleep(100);
+				sleep(1000);
 			}catch(Exception e ){
 				e.printStackTrace();
 			}
 		}
 	}
+
 }

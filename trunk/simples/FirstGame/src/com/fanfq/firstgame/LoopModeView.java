@@ -26,6 +26,8 @@ public class LoopModeView extends GameView{
 				}
 			}
 			result = true;
+			score += ((count-1)*(count-1));
+			gain += (count-1);
 		}
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {

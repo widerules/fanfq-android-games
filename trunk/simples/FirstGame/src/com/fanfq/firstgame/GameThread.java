@@ -15,7 +15,7 @@ public class GameThread extends Thread {
 
 	public void run() {
 		Canvas canvas;
-		while (Constant.threadFlag) {
+		while (Constant.GAME_THREAD_FLAG) {
 			canvas = null;
 			if (true) {
 				try {
