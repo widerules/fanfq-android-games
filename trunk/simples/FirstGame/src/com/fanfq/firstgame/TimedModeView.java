@@ -3,6 +3,7 @@ package com.fanfq.firstgame;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class TimedModeView extends GameView{
@@ -67,13 +68,29 @@ public class TimedModeView extends GameView{
 		
 		return result;
 	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		
+		switch (event.getAction()) {
+		case MotionEvent.ACTION_UP:
+			int x = (int) event.getX()/20;
+			int y = (int) event.getY()/20;
+			if (!timedMode(x,y)){
+				count =0;
+				filter(x, y);
+			}
+		}
+		
+		return true;
+	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		
 		super.surfaceCreated(holder);
 		Constant.TIMED_THREAD_FLAG=true;
-//		mTimedThread.start();
+		mTimedThread.start();
 	}
 	
 	@Override
