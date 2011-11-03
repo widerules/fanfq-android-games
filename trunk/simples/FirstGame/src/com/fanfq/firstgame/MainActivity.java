@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
     	case Constant.LOOP_MODE:mHandler.sendEmptyMessage(Constant.LOOP_MODE);break;
     	case Constant.TIMED_MODE:mHandler.sendEmptyMessage(Constant.TIMED_MODE);break;
     	case Constant.SET_VIEW:mHandler.sendEmptyMessage(Constant.SET_VIEW);break;
-    	case Constant.REPLAY_VIEW:mHandler.sendEmptyMessage(Constant.REPLAY_VIEW);break;
+    	case Constant.REPLAY_VIEW:mHandler.sendEmptyMessage(Constant.GAME_MODE);break;
     	}
     }
 }
