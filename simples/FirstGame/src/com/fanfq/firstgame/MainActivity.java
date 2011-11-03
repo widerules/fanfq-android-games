@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 			public void handleMessage(Message msg) {
 				super.handleMessage(msg);
 				switch(msg.what){
-				case Constant.ENTER_MENU:
+				case Constant.WELCOME_VIEW:
 					mMenuView  = new MenuView(MainActivity.this);
 					mMenuView.requestFocus();
 					mMenuView.setFocusableInTouchMode(true);
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 			public void run()
 			{
 				waitTwoSeconds();
-				mHandler.sendEmptyMessage(Constant.ENTER_MENU);
+				mHandler.sendEmptyMessage(Constant.WELCOME_VIEW);
 			}
 		}.start();
     }
@@ -90,10 +90,12 @@ public class MainActivity extends Activity {
     	switch(flag)
     	{
     	case 0:break;
-    	case Constant.ENTER_MENU:mHandler.sendEmptyMessage(Constant.ENTER_MENU);break;
+    	case Constant.WELCOME_VIEW:mHandler.sendEmptyMessage(Constant.WELCOME_VIEW);break;
     	case Constant.CLASSIC_MODE:mHandler.sendEmptyMessage(Constant.CLASSIC_MODE);break;
     	case Constant.LOOP_MODE:mHandler.sendEmptyMessage(Constant.LOOP_MODE);break;
     	case Constant.TIMED_MODE:mHandler.sendEmptyMessage(Constant.TIMED_MODE);break;
+    	case Constant.SET_VIEW:mHandler.sendEmptyMessage(Constant.SET_VIEW);break;
+    	case Constant.REPLAY_VIEW:mHandler.sendEmptyMessage(Constant.REPLAY_VIEW);break;
     	}
     }
 }

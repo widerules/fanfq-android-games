@@ -33,12 +33,10 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback{
 		bmClassicMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.classic);
 		bmLoopMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.loop);
 		bmTimedMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.timed);
-		
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mMenuThread = new MenuThread(this);
 	}
-	
 	
 	@Override
 	public void onDraw(Canvas canvas){
@@ -58,12 +56,15 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback{
 			if (x > 60 && x < 60 + bmClassicMode.getWidth() && y > 150
 					&& y < 150 + bmClassicMode.getHeight()) {
 				Constant.GAME_MODE = Constant.CLASSIC_MODE;
+				bmClassicMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.classic_);
 			} else if (x > 60 && x < 60 + bmLoopMode.getWidth() && y > 250
 					&& y < 250 + bmLoopMode.getHeight()) {
 				Constant.GAME_MODE = Constant.LOOP_MODE;
+				bmLoopMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.loop_);
 			} else if (x > 60 && x < 60 + bmTimedMode.getWidth() && y > 350
 					&& y < 350 + bmTimedMode.getHeight()) {
 				Constant.GAME_MODE = Constant.TIMED_MODE;
+				bmTimedMode = BitmapFactory.decodeResource(this.getResources(), R.drawable.timed_);
 			}
 			this.mActivity.toAnotherView(Constant.GAME_MODE);
 			// switch(status)
@@ -90,7 +91,7 @@ public class MenuView extends SurfaceView implements SurfaceHolder.Callback{
 
 			break;
 		}
-System.out.println(Constant.GAME_MODE);
+//System.out.println(Constant.GAME_MODE);
 		return true;
 	}
 

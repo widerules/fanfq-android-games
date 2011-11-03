@@ -18,6 +18,9 @@ public class GameView  extends SurfaceView implements SurfaceHolder.Callback{
 	public int columns = Constant.SCREEN_HEIGHT/20;
 	Block[][] blocks = new Block[rows][columns];
 	private Bitmap bmBackground;
+	public Bitmap bmSet;
+	public Bitmap bmReplay;
+	public Bitmap bmHome;
 	
 	private Paint mPaint;
 	private Thread gameThread;
@@ -25,6 +28,8 @@ public class GameView  extends SurfaceView implements SurfaceHolder.Callback{
 	public int score = 0;
 	public int gain = 0;
 	public int time = 120;
+	
+	BitmapFactory.Options options = new BitmapFactory.Options();
 
 	public GameView(MainActivity activity) {
 		super(activity);
@@ -36,6 +41,13 @@ public class GameView  extends SurfaceView implements SurfaceHolder.Callback{
 			}
 		}
 		bmBackground = BitmapFactory.decodeResource(this.getResources(), R.drawable.block_bg);
+		
+		options.inSampleSize = 4;
+		options.inPurgeable = true;
+		bmSet = BitmapFactory.decodeResource(this.getResources(), R.drawable.set,options);
+		bmReplay = BitmapFactory.decodeResource(this.getResources(), R.drawable.replay,options);
+		bmHome = BitmapFactory.decodeResource(this.getResources(), R.drawable.home,options);
+		
 		mPaint=new Paint();
 		mPaint.setAntiAlias(true);
 		
@@ -53,14 +65,21 @@ public class GameView  extends SurfaceView implements SurfaceHolder.Callback{
 				}
 			}
 		}
+		
+		
+		
 		mPaint.setColor(Color.WHITE);
 		mPaint.setFakeBoldText(true);
 		mPaint.setTextSize(15);
-		canvas.drawText("Score:"+score, 10, 20, mPaint);
-		canvas.drawText("Gain:"+gain, 240, 20, mPaint);
+		canvas.drawText("Score:"+score, 10, 470, mPaint);
+		canvas.drawText("Gain:"+gain, 240, 470, mPaint);
 		if(Constant.GAME_MODE == Constant.TIMED_MODE){
-			canvas.drawText("Time:"+time, 120, 20, mPaint);
+			canvas.drawText("Time:"+time, 120, 470, mPaint);
 		}
+//		mPaint.setAlpha(100);
+		canvas.drawBitmap(bmHome,10, 10, mPaint);
+		canvas.drawBitmap(bmSet,150, 10, mPaint);
+		canvas.drawBitmap(bmReplay,270, 10, mPaint);
 	}
 	
 	public int count;
