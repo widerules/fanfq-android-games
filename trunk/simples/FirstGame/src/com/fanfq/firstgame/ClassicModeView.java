@@ -1,5 +1,6 @@
 package com.fanfq.firstgame;
 
+import android.graphics.BitmapFactory;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
@@ -7,9 +8,11 @@ public class ClassicModeView extends GameView{
 
 	
 	private int clreanCount = 0;
+	private MainActivity mActivity;
 	
 	public ClassicModeView(MainActivity activity) {
 		super(activity);
+		this.mActivity = activity;
 	}
 	
 	public boolean classicMode(int rowClicked, int columnClicked){
@@ -75,11 +78,28 @@ public class ClassicModeView extends GameView{
 		
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_UP:
-			int x = (int) event.getX()/20;
-			int y = (int) event.getY()/20;
-			if (!classicMode(x,y)){
-				count =0;
-				filter(x, y);
+			int x = (int) event.getX();
+			int y = (int) event.getY();
+			
+			if(x>10&&x<10+bmHome.getWidth()&&y>10&&y<bmHome.getHeight()+10){
+				bmHome = BitmapFactory.decodeResource(this.getResources(), R.drawable.home_,options);
+				this.mActivity.toAnotherView(Constant.WELCOME_VIEW);
+				break;
+			}else if(x>150&&x<bmSet.getWidth()+150&&y>10&&y<bmSet.getHeight()+10){
+				bmSet = BitmapFactory.decodeResource(this.getResources(), R.drawable.set_,options);;
+				this.mActivity.toAnotherView(Constant.SET_VIEW);
+				break;
+			}else if(x>270&&x<bmReplay.getWidth()+270&&y>10&&y<bmReplay.getHeight()+10){
+				bmReplay = BitmapFactory.decodeResource(this.getResources(), R.drawable.replay_,options);;
+				this.mActivity.toAnotherView(Constant.REPLAY_VIEW);
+				break;
+			}else{
+				x = x/20;
+				y = y/20;
+				if (!classicMode(x,y)){
+					count =0;
+					filter(x, y);
+				}
 			}
 		}
 		
