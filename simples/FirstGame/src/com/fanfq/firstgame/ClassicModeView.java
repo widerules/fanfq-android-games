@@ -75,12 +75,10 @@ public class ClassicModeView extends GameView{
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		
+		int x = (int) event.getX();
+		int y = (int) event.getY();
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_UP:
-			int x = (int) event.getX();
-			int y = (int) event.getY();
-			
+		case MotionEvent.ACTION_DOWN:
 			if(x>10&&x<10+bmHome.getWidth()&&y>10&&y<bmHome.getHeight()+10){
 				bmHome = BitmapFactory.decodeResource(this.getResources(), R.drawable.home_,options);
 				this.mActivity.toAnotherView(Constant.WELCOME_VIEW);
@@ -93,13 +91,14 @@ public class ClassicModeView extends GameView{
 				bmReplay = BitmapFactory.decodeResource(this.getResources(), R.drawable.replay_,options);;
 				this.mActivity.toAnotherView(Constant.REPLAY_VIEW);
 				break;
-			}else{
-				x = x/20;
-				y = y/20;
-				if (!classicMode(x,y)){
-					count =0;
-					filter(x, y);
-				}
+			}
+			break;
+		case MotionEvent.ACTION_UP:
+			x = x/20;
+			y = y/20;
+			if (!classicMode(x,y)){
+				count =0;
+				filter(x, y);
 			}
 		}
 		
